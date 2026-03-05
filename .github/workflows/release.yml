@@ -2,6 +2,11 @@ name: Release Desktop App
 
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release tag (e.g. v0.1.1)"
+        required: true
+        type: string
   push:
     tags:
       - 'v*'
@@ -53,10 +58,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: LocalScholar ${{ github.ref_name }}
+          tagName: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}
+          releaseName: LocalScholar ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}
           releaseBody: |
-            Automated release for ${{ github.ref_name }}.
+            Automated release for ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}.
             Install the package matching your OS from the Assets section.
           releaseDraft: true
           prerelease: false
