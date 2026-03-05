@@ -11,6 +11,15 @@ node_modules
 dist
 dist-ssr
 *.local
+src-tauri/target
+src-tauri/gen
+.localscholar
+.env
+.env.*
+!.env.example
+coverage
+*.tsbuildinfo
+AGENTS.md
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +31,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*~

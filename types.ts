@@ -26,6 +26,8 @@ export interface FileItem {
   id: string;
   file: File;
   originalName: string;
+  sourcePath?: string;
+  relativePath?: string;
   state: ProcessingState;
   metadata?: PaperMetadata;
   error?: string;
